@@ -34,11 +34,15 @@ import MarejeshoYaLeo from '../Marejesho/MarejeshoYaLeo';
 import FainiZaLeo from '../Marejesho/FainiZaLeo';
 
 import RipotiYaSiku from '../Screens/RipotiYaSiku';
+import FutaRipoti from '../Screens/FutaRipoti';
+
 import HawajarejeshaJana from '../Screens/HawajarejeshaJana';
 
 import JazaFaini from '../Marejesho/JazaFaini';
 
 import WamemalizaHawajakopaTena from '../Screens/WamemalizaHawajakopaTena';
+
+import OngezaKituo from '../Screens/OngezaKituo';
 
 const Stack = createStackNavigator();
 
@@ -230,6 +234,24 @@ function MyStack( {navigation}){
       //       headerLeft: () => <Header  title='About Page' />,
       //     })}
       />
+
+                <Stack.Screen
+      name="Futa Ripoti"
+      component={FutaRipoti}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
+                  <Stack.Screen
+      name="Ongeza Kituo"
+      component={OngezaKituo}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
 
       
 

@@ -99,6 +99,10 @@ const [MatumiziMengine, setMatumiziMengine] = useState('');
 const [IdadiYaMikopoYaLeo, setIdadiYaMikopoYaLeo] = useState('');
 
 
+const [KituoIlichoendaHela, setKituoIlichoendaHela] = useState('');
+const [KituoIlichotokaHela, setKituoIlichotokaHela] = useState('');
+
+
   const [userData, setUserData] = useState({});
   const [userToken, setUserToken] = useState('');
   const [email, setEmail] = useState('');
@@ -286,6 +290,24 @@ const handleRegistration = async () => {
         }
 
 
+          if (KituoIlichoendaHela) {
+            formData.append('KituoIlichoendaHela', KituoIlichoendaHela);
+        } else {
+            showAlertFunction('Tafadhali andika jina la kituo kilichoenda pesa ');
+            setIsLoading(false);
+            return;
+        }
+
+           if (KituoIlichotokaHela) {
+            formData.append('KituoIlichotokaHela', KituoIlichotokaHela);
+        } else {
+            showAlertFunction('Tafadhali andika jina la kituo  pesa ilipotoka ');
+            setIsLoading(false);
+            return;
+        }
+
+
+
 
           if (ImeendaKwaBosi) {
             formData.append('ImeendaKwaBosi', ImeendaKwaBosi);
@@ -346,6 +368,9 @@ const handleRegistration = async () => {
             setImeendaKituoJirani('');
             setImeendaKwaBosi('');
             setImetokaKwaBosi(0);
+
+            setKituoIlichotokaHela('');
+            setKituoIlichoendaHela('');
 
 
 
@@ -688,6 +713,70 @@ const handleRegistration = async () => {
 
 
 
+
+               {/*  mwanzo wa namba ya simu*/}
+            <View 
+            style={[styles.dataContainerForPassword, 
+              {
+                 width:width-20,
+                marginTop:0,
+              }
+
+              ]}
+          >
+
+            <View style={{
+          width:'10%',
+          //justifyContent:"center",
+        }}>
+
+         {/* Add a button to toggle password visibility */}
+        <TouchableOpacity
+          
+          style={{ 
+            alignSelf: 'flex-start', 
+            marginRight: 0,color:'black',
+            flexDirection:'row',
+            alignItems:'center',
+             }}
+          >
+
+         <FontAwesome size={20} color="#c07d18" name="pencil" />
+
+        {/*  <Text style={{
+           color: 'black', 
+           fontSize: 16,
+           fontWeight:'bold',
+           marginLeft:10,
+            }}>
+            +255
+          </Text>*/}
+        </TouchableOpacity>
+
+        </View>
+
+
+          <TextInput
+          style= {[styles.textinputi,{ 
+            color: 'black',width:'88%',
+
+            //paddingVertical:20,
+          }]}
+          placeholder="Jina la kituo pesa ilipotoka"
+          //keyboardType="numeric"
+          
+          value={KituoIlichotokaHela}
+          onChangeText={setKituoIlichotokaHela}
+        placeholderTextColor="black"
+        />
+
+      
+        </View>
+      {/*  mwisho wa namba ya simu*/}
+
+
+
+
                {/*  mwanzo wa namba ya simu*/}
             <View 
             style={[styles.dataContainerForPassword, 
@@ -979,6 +1068,72 @@ Endelea
 
 
 
+
+
+
+
+        {/*  mwanzo wa email*/}
+            <View 
+            style={[styles.dataContainerForPassword, 
+              {
+                 width:width-20,
+                marginTop:0,
+              }
+
+              ]}
+          >
+
+            <View style={{
+          width:'10%',
+          //justifyContent:"center",
+         // backgroundColor:'red',
+        }}>
+
+         {/* Add a button to toggle password visibility */}
+        <TouchableOpacity
+          
+          style={{ 
+            alignSelf: 'flex-start', 
+            marginRight: 0,color:'black',
+            flexDirection:'row',
+            alignItems:'center',
+             }}
+          >
+
+         <FontAwesome size={20} color="#c07d18" name="pencil" />
+
+        {/*  <Text style={{
+           color: 'black', 
+           fontSize: 16,
+           fontWeight:'bold',
+           marginLeft:10,
+            }}>
+            +255
+          </Text>*/}
+        </TouchableOpacity>
+
+        </View>
+
+
+          <TextInput
+          style= {[styles.textinputi,{ 
+            color: 'black',width:'88%',
+            //backgroundColor:'black',
+
+            //paddingVertical:20,
+          }]}
+          placeholder="Jina la kituo pesa ilipoenda"
+          //keyboardType="numeric"
+           //keyboardType={'email-address'}
+          
+          value={KituoIlichoendaHela}
+          onChangeText={setKituoIlichoendaHela}
+        placeholderTextColor="black"
+        />
+
+      
+        </View>
+      {/*  mwisho wa email*/}
 
 
 

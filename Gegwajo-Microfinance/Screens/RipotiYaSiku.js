@@ -688,6 +688,7 @@ const TableRowComponent = ({ item}) => {
 
             
 
+
 {/*mwanzo wa fomu na bima*/}
       <View style={{
         flexDirection:'row',
@@ -720,9 +721,6 @@ const TableRowComponent = ({ item}) => {
       </View>
 
   {/*mwisho wa fomu na bima*/}
-
-    
-
 
 {/*mwanzo wa Full taarifa za marejesho View Ya 1*/}
 
@@ -797,6 +795,19 @@ style={globalStyles.FullRipotiYaSikuLeftContainer}
 style={globalStyles.FullRipotiYaSikuLeftText}
  >Imetoka kituo jirani</Text>
 </View>
+{/*mwanzo wa Left View*/} 
+
+
+{/*mwanzo wa Left View*/} 
+{item.KituoIlichotokaHela && (
+<View 
+style={globalStyles.FullRipotiYaSikuLeftContainer}
+>
+<Text 
+style={globalStyles.FullRipotiYaSikuLeftText}
+ >Kituo zilipotoka</Text>
+</View>
+)}
 {/*mwanzo wa Left View*/} 
 
 
@@ -923,7 +934,7 @@ style={globalStyles.FullRipotiYaSikuRightText}
 <View 
 style={globalStyles.FullRipotiYaSikuRightContainer}
 >
-{item.ImetokaKituoJirani > 0 ? (
+{item.KituoIlichotokaHela && item.ImetokaKituoJirani > 0 ? (
 <Text 
 style={globalStyles.FullRipotiYaSikuRightText}
  >{formatToThreeDigits(item.ImetokaKituoJirani)}</Text>
@@ -936,7 +947,18 @@ style={globalStyles.FullRipotiYaSikuRightText}
 {/*mwanzo wa Right View*/} 
 
 
+{/*mwanzo wa Right View*/} 
+<View 
+style={globalStyles.FullRipotiYaSikuRightContainer}
+>
+{item.KituoIlichotokaHela && (
+<Text 
+style={globalStyles.FullRipotiYaSikuRightText}
+ >{item.KituoIlichotokaHela}</Text>
 
+ )}
+</View>
+{/*mwanzo wa Right View*/} 
 
 {/*mwanzo wa Right View*/} 
 <View 
@@ -1037,10 +1059,29 @@ style={globalStyles.FullRipotiYaSikuLeftText}
 <View 
 style={globalStyles.FullRipotiYaSikuLeftContainer}
 >
+
+
 <Text 
 style={globalStyles.FullRipotiYaSikuLeftText}
- >Imeenda kituo jirani</Text>
+ >Imeenda kituo jirani </Text>
+ 
 </View>
+{/*mwanzo wa Left View*/}
+
+
+{/*mwanzo wa Left View*/} 
+{item.KituoIlichoendaHela && (
+<View 
+style={globalStyles.FullRipotiYaSikuLeftContainer}
+>
+
+
+<Text 
+style={globalStyles.FullRipotiYaSikuLeftText}
+ >Kituo zilipokwenda </Text>
+ 
+</View>
+)}
 {/*mwanzo wa Left View*/} 
 
 
@@ -1180,6 +1221,22 @@ style={globalStyles.FullRipotiYaSikuRightText}
 </View>
 {/*mwanzo wa Right View*/} 
 
+
+
+{/*mwanzo wa Right View*/} 
+<View 
+style={globalStyles.FullRipotiYaSikuRightContainer}
+>
+{item.KituoIlichoendaHela && (
+<Text 
+style={globalStyles.FullRipotiYaSikuRightText}
+ >{item.KituoIlichoendaHela}</Text>
+ 
+ )}
+</View>
+{/*mwanzo wa Right View*/} 
+
+
 {/*mwanzo wa Right View*/} 
 <View 
 style={globalStyles.FullRipotiYaSikuRightContainer}
@@ -1270,13 +1327,46 @@ style={[globalStyles.FullRipotiYaSikuRightText,
 
 
 
+
+
+
+
 </Pressable>
+
+
 
 
 </View>
 
 {/*mwiso wa Full taarifa za marejesho View Ya 2*/}
 
+
+<TouchableOpacity 
+onPress={() => navigation.replace('Futa Ripoti', { ...item, postId: item.id })}
+style={{
+  width:'50%',
+}}
+>
+
+{item.JumlaMarejeshoYaLeo > 0 && (
+<Text style={{
+  color: "white" ,
+  // padding:13,
+   backgroundColor: "brown",
+   borderColor:'white',
+   borderWidth:1,
+   textAlign:'center',
+   borderRadius:8,
+   width:'100%',
+   fontFamily:'Light',
+   paddingVertical:10,
+   marginLeft:20,
+   marginVertical:20,
+  
+}}>Futa Ripoti</Text>
+
+)}
+</TouchableOpacity>
 
 
     </Pressable>

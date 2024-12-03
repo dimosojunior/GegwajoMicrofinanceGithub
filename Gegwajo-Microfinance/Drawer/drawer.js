@@ -18,7 +18,7 @@ import { EventRegister } from 'react-native-event-listeners';
 //import theme from '../theme/theme';
 import COLORS  from '../Constant/colors';
 //import themeContext from '../theme/themeContext';
-import React, {useState, useEffect} from 'react';
+import React, {useState,useCallback, useEffect} from 'react';
 import {useFonts} from 'expo-font';
 import Header from '../Header/header';
 
@@ -53,6 +53,8 @@ import NjeYaMkatabaWote from '../Screens/NjeYaMkatabaWote';
 import NjeYaMkatabaTarehe from '../Screens/NjeYaMkatabaTarehe';
 
 import SignupScreen from '../AccountScreens/SignupScreen';
+
+import { useFocusEffect } from '@react-navigation/native';
 
 const Drawer = createDrawerNavigator();
 function MyDrawer(){
@@ -96,39 +98,88 @@ const [userData, setUserData] = useState({});
 
 
 
-  useEffect(() => {
-    AsyncStorage.getItem("userToken").then(token => {
-      setUserToken(token)
-    })
-    fetchUserData();
-  }, [userData]);
+ //  useEffect(() => {
+ //    AsyncStorage.getItem("userToken").then(token => {
+ //      setUserToken(token)
+ //    })
+ //    fetchUserData();
+ //  }, [userData]);
 
-  const fetchUserData = async () => {
+ //  const fetchUserData = async () => {
+ //    try {
+ //      const userDataJSON = await AsyncStorage.getItem('userData');
+ //      if (userDataJSON) {
+ //        const parsedUserData = JSON.parse(userDataJSON);
+ //        setUserData(parsedUserData);
+
+ //        //console.log(parsedUserData);
+ //        //console.log(userDataJSON);
+ //      }
+ //    } catch (error) {
+ //      // console.log(error);
+ //    }
+ //  };
+
+
+ // useEffect(() => {
+ //    checkLoggedIn();
+
+
+ //  }, [userToken]);
+
+ //  const checkLoggedIn = async () => {
+ //    const token = await AsyncStorage.getItem('userToken');
+ //    setUserToken(token);
+ //  };
+
+
+
+
+
+
+
+
+ const fetchUserData = async () => {
     try {
       const userDataJSON = await AsyncStorage.getItem('userData');
       if (userDataJSON) {
-        const parsedUserData = JSON.parse(userDataJSON);
-        setUserData(parsedUserData);
-
-        //console.log(parsedUserData);
-        //console.log(userDataJSON);
+        setUserData(JSON.parse(userDataJSON));
       }
     } catch (error) {
-      // console.log(error);
+      console.error('Error fetching user data:', error);
     }
   };
 
-
- useEffect(() => {
-    checkLoggedIn();
-
-
-  }, [userToken]);
-
-  const checkLoggedIn = async () => {
-    const token = await AsyncStorage.getItem('userToken');
-    setUserToken(token);
+  const fetchTokenAndData = async () => {
+    try {
+      const token = await AsyncStorage.getItem('userToken');
+      setUserToken(token);
+      
+    } catch (error) {
+      console.error('Error fetching token:', error);
+    }
   };
+
+  useFocusEffect(
+    useCallback(() => {
+      //setPending(true); // Set pending to true immediately when entering the screen
+      fetchUserData();
+      fetchTokenAndData();
+
+      // return () => {
+      //   //setQueryset([]); // Reset queryset to avoid stale data
+      //   setcurrent_page(1); // Reset pagination
+      //   setEndReached(false); // Ensure endReached is reset for new focus
+      // };
+    }, [])
+  );
+
+
+
+
+
+
+
 
 
 
@@ -259,7 +310,7 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
                       color: 'white'
                     }}>Karibu => {userData ? userData.username : ''}</Text>
                   
-
+              {userData && userData.is_admin === true && (
                     <TouchableOpacity
               style={{
                 flexDirection: "row",
@@ -284,6 +335,7 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
             }}>Badili neno siri</Text>
              <FontAwesome name="key" size={20} color="white" />
             </TouchableOpacity>
+            )}
 
                   </View>
 
@@ -301,7 +353,7 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
               <Text style={{ color: "white", 
               marginLeft: 30, fontFamily: "Light" 
             }}>
-                Mtumiaji
+                Vituo
               </Text>
             </TouchableOpacity>
             )}
@@ -321,7 +373,18 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
                   }}
                 >
                   <Text style={{ color: "white", marginVertical: 8 }}>
-                    Sajili mtumiaji
+                    Weka Taarifa za kituo
+                  </Text>
+                </TouchableOpacity>
+
+                  <TouchableOpacity
+                  onPress={() => {
+                    setDropdownVisible2(false);
+                    navigation.navigate("Ongeza Kituo"); // Navigate to first option
+                  }}
+                >
+                  <Text style={{ color: "white", marginVertical: 8 }}>
+                    Ongeza kituo
                   </Text>
                 </TouchableOpacity>
 
@@ -334,7 +397,7 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
                   }}
                 >
                   <Text style={{ color: "white", marginVertical: 8 }}>
-                    Taarifa za watumiaji
+                    Vituo vyote
                   </Text>
                 </TouchableOpacity>
 
