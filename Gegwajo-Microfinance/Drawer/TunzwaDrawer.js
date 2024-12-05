@@ -8,8 +8,7 @@ import MyStack from '../Stack/MyStack';
 
 import { StyleSheet,ScrollView,TouchableOpacity,Modal, 
   Dimensions,Image,Switch, Text, View, Button,
-  Linking,Alert,
-  ActivityIndicator
+  Linking,Alert
 } from 'react-native';
 
 import {MaterialIcons, Ionicons, FontAwesome} from '@expo/vector-icons';
@@ -56,7 +55,7 @@ import NjeYaMkatabaTarehe from '../Screens/NjeYaMkatabaTarehe';
 import SignupScreen from '../AccountScreens/SignupScreen';
 
 import { useFocusEffect } from '@react-navigation/native';
-const { width, height } = Dimensions.get('window');
+
 const Drawer = createDrawerNavigator();
 function MyDrawer(){
 
@@ -88,7 +87,7 @@ const WebsiteLink = EndPoint + `/admin/App/myuser/`
 
 const [modalVisible, setModalVisible] = useState(false);
 
- // const {width,height} = Dimensions.get('window');
+  const {width,height} = Dimensions.get('window');
 
   const [darkMode, setdarkMode] = useState(false)
   //const theme = useContext(themeContext)
@@ -98,6 +97,50 @@ const [userData, setUserData] = useState({});
 
 
 
+
+ //  useEffect(() => {
+ //    AsyncStorage.getItem("userToken").then(token => {
+ //      setUserToken(token)
+ //    })
+ //    fetchUserData();
+ //  }, [userData]);
+
+ //  const fetchUserData = async () => {
+ //    try {
+ //      const userDataJSON = await AsyncStorage.getItem('userData');
+ //      if (userDataJSON) {
+ //        const parsedUserData = JSON.parse(userDataJSON);
+ //        setUserData(parsedUserData);
+
+ //        //console.log(parsedUserData);
+ //        //console.log(userDataJSON);
+ //      }
+ //    } catch (error) {
+ //      // console.log(error);
+ //    }
+ //  };
+
+
+ // useEffect(() => {
+ //    checkLoggedIn();
+
+
+ //  }, [userToken]);
+
+ //  const checkLoggedIn = async () => {
+ //    const token = await AsyncStorage.getItem('userToken');
+ //    setUserToken(token);
+ //  };
+
+
+
+
+
+
+
+// kwaajili ya kupata taarifa za aliyelogin
+// const [userData, setUserData] = useState({});
+//   const [userToken, setUserToken] = useState('');
 
   useEffect(() => {
     AsyncStorage.getItem("userToken").then(token => {
@@ -114,7 +157,7 @@ const [userData, setUserData] = useState({});
         setUserData(parsedUserData);
 
         //console.log(parsedUserData);
-        console.log("Aliye Login", userData.username);
+        //console.log(userDataJSON);
       }
     } catch (error) {
       // console.log(error);
@@ -135,82 +178,6 @@ const [userData, setUserData] = useState({});
 
 
 
-
-
-// const [isLoading2, setIsLoading2] = useState(false);
-
-// const handleErrorMessage = (error) => {
-//     if (error.response) {
-//       // The request was made and the server responded with an error status code
-//       // if (error.response.status === 401) {
-//       //   showAlertFunction('Registration error. Please try again later.');
-//       // } else if (error.response.status === 404) {
-//       //   showAlertFunction('Not Found: The requested resource was not found.');
-
-//       // } 
-//       // else {
-//       //   showAlertFunction('An error occurred while processing your request.');
-//       // }
-//     }  if (error.message === 'Network Error') {
-//       showAlertFunction('Tatizo la mtandao, washa data na ujaribu tena.');
-//       setIsLoading2(false);
-//     } else {
-//       showAlertFunction('Kuna tatizo kwenye ubadilishaji wa taarifa zako');
-//       setIsLoading2(false);
-//     }
-//   };
-
-
-
-//   useEffect(() => {
-//     AsyncStorage.getItem("userToken").then(token => {
-//       setUserToken(token)
-//     })
-   
-//   }, []);
-
-
-//  useEffect(() => {
-//     checkLoggedIn();
-
-
-//   }, [userToken]);
-
-
-//   const checkLoggedIn = async () => {
-//     setIsLoading2(true);
-//     const token = await AsyncStorage.getItem('userToken');
-//     setUserToken(token);
-//     if (userToken) {
-//       try {
-//         const userResponse = await axios.get(
-//           EndPoint + '/Account/user_data/',
-//           {
-//             headers: {
-//               Authorization: `Token ${token}`,
-//             },
-//           }
-//         );
-
-//         const userData1 = userResponse.data;
-//         setUserData(userData1);
-       
-//       // setEmail(userData.email);
-//       // setUsername(userData.username);
-//       // setPhone(userData.phone);
-//       // setcompany_name(userData.company_name);
-//       setIsLoading2(false);
-       
-//       } catch (error) {
-//         handleErrorMessage(error);
-        
-//       }
-//     }
-//   };
-
-
-
-// console.log("USERDATA NAME", userData.username);
 
 
 
@@ -305,9 +272,6 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
               <View style={{
                 // backgroundColor: 'rgb(5,5,49)',
               }}>
-
-              {userData && userData.username ? (
-
                 <ScrollView>
 
                   <View
@@ -525,31 +489,6 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
 
 
                 </ScrollView>
-
-                ):(
-
-                <View style={[
-                styles.button1,
-                {
-                 // backgroundColor:'black',
-                  //borderColor:'black',
-                  justifyContent:'center',
-                  //flex:1,
-                  alignItems:'center',
-                  height:height,
-                }
-
-                ]}>
-                <Text style={{
-                  color:'white',
-                  marginBottom:10,
-                }}>Tafadhali subiri......</Text>
-                 
-               <ActivityIndicator size="large" color="red" /> 
-              </View>
-
-
-                )}
               </View>
 
 

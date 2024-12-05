@@ -315,7 +315,7 @@ const handleErrorMessage = (error) => {
 
             //paddingVertical:20,
           }]}
-          placeholder="Jina la kuingilia"
+          placeholder="Jina la kituo"
           //keyboardType="numeric"
           
           value={JinaLaKituo}

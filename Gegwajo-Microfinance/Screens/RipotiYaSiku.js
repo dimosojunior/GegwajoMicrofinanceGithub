@@ -553,28 +553,38 @@ const [SharedClicked, setSharedClicked] = useState(false);
           text-align: center;
           margin: 0;
           padding: 0;
+          background-color:#243137;
         }
         h1 {
           font-size: 24px;
           font-weight: bold;
           margin-bottom: 20px;
+          color:white;
         }
         table {
           width: 100%;
           border-collapse: collapse;
           margin-bottom: 20px;
         }
-        th, td {
+        th {
           border: 1px solid #ddd;
-          padding: 8px;
+          padding: 12px;
           text-align: center;
         }
+
+        td {
+          border: 1px solid #ddd;
+          padding: 15px;
+          text-align: center;
+        }
+
+
         th {
-          background-color: #f2f2f2;
+          background-color: #c07d18;
           font-weight: bold;
         }
         tr:nth-child(even) {
-          background-color: #f9f9f9;
+          background-color: #c07d18;
         }
       </style>
     </head>
@@ -1341,6 +1351,7 @@ style={[globalStyles.FullRipotiYaSikuRightText,
 {/*mwiso wa Full taarifa za marejesho View Ya 2*/}
 
 
+{userData && userData.is_admin === true && (
 <TouchableOpacity 
 onPress={() => navigation.replace('Futa Ripoti', { ...item, postId: item.id })}
 style={{
@@ -1367,6 +1378,7 @@ style={{
 
 )}
 </TouchableOpacity>
+)}
 
 
     </Pressable>

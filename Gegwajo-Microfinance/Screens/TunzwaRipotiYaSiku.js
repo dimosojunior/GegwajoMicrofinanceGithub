@@ -494,211 +494,146 @@ const [SharedClicked, setSharedClicked] = useState(false);
   }
 
 
-  const createDynamicTable = () => {
-    var table = '';
-    for (let i in queryset) {
-      const item = queryset[i];
-      table = table + `
+ const createDynamicTable = () => {
+  var rows1 = '';
+  var rows2 = '';
+  var rows3 = '';
+  var rows4 = '';
+
+  for (let i in queryset) {
+    const item = queryset[i];
+    
+    rows1 += `
       <tr>
         <td>${item.IdadiYaMikopoYaLeo}</td>
-        <td>${item.IdadiYaMikatabaMipyaLeo} 
-      
-       </td>
-       
+        <td>${item.IdadiYaMikatabaMipyaLeo}</td>
         <td>${item.IdadiYaWenyeMikatabaHai}</td>
-         <td>${item.IdadiYaWaliorejeshaLeo}</td>
-          <td>${item.IdadiYaFainiZilizopokelewaLeo}</td>
-        
+        <td>${item.IdadiYaWaliorejeshaLeo}</td>
+        <td>${item.IdadiYaFainiZilizopokelewaLeo}</td>
       </tr>
-
-        <tr>
-       </tr>
-
-        <tr>
-        <td>${item.JumlaMarejeshoYaLeo}</td>
-        <td>${item.JumlaFainiLeo} 
-      
-       </td>
-       
-        <td>${item.FomuNaBima}</td>
-         <td>${item.BakiJana}</td>
-          <td>${item.ImetokaKwaBosi}</td>
-           <td>${item.ImetokaKituoJirani}</td>
-            <td>${item.MapatoYaJumla}</td>
-        
-      </tr>
-
-
-           <tr>
-       </tr>
-
-        <tr>
-        <td>${item.Mkopo}</td>
-        <td>${item.Posho} 
-      
-       </td>
-       
-        <td>${item.ImeendaKwaBosi}</td>
-         <td>${item.ImeendaKituoJirani}</td>
-          <td>${item.MatumiziMengine}</td>
-           <td>${item.MatumiziYaJumla}</td>
-           
-        
-      </tr>
-
-
-             <tr>
-       </tr>
-
-        <tr>
-        <td>${item.Balance}</td>      
-     </tr>
-
-      `
-    }
+    `;
     
-    const html = `
-    <!DOCTYPE html>
-    <html>
-      <head>
+    rows2 += `
+      <tr>
+        <td>${item.JumlaMarejeshoYaLeo}</td>
+        <td>${item.JumlaFainiLeo}</td>
+        <td>${item.FomuNaBima}</td>
+        <td>${item.BakiJana}</td>
+        <td>${item.ImetokaKwaBosi}</td>
+        <td>${item.ImetokaKituoJirani}</td>
+        <td>${item.MapatoYaJumla}</td>
+      </tr>
+    `;
+
+    rows3 += `
+      <tr>
+        <td>${item.Mkopo}</td>
+        <td>${item.Posho}</td>
+        <td>${item.ImeendaKwaBosi}</td>
+        <td>${item.ImeendaKituoJirani}</td>
+        <td>${item.MatumiziMengine}</td>
+        <td>${item.MatumiziYaJumla}</td>
+      </tr>
+    `;
+
+    rows4 += `
+      <tr>
+        <td>${item.Balance}</td>
+      </tr>
+    `;
+  }
+
+  const html = `
+  <html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
       <style>
+        body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin: 0;
+          padding: 0;
+        }
+        h1 {
+          font-size: 24px;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
         table {
-          font-family: arial, sans-serif;
-          border-collapse: collapse;
           width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 20px;
         }
-        
-        td, th {
-          border: 1px solid #dddddd;
-          text-align: left;
+        th, td {
+          border: 1px solid #ddd;
           padding: 8px;
+          text-align: center;
         }
-        
+        th {
+          background-color: #f2f2f2;
+          font-weight: bold;
+        }
         tr:nth-child(even) {
-          background-color: #dddddd;
+          background-color: #f9f9f9;
         }
-        h2{
-          color:black;
-          font-weight:bold;
-          font-size:16;
-        }
-
-         h1{
-          color:white;
-          font-weight:bold;
-          text-align:center;
-          font-size:18;
-
-        }
-        img{
-          width:50%;
-          height:40px;
-          marginBottom:20;
-         border-radius:8;
-        margin-top:20;
-        }
-        #totalCartPrice{
-
-        }
-
-         #totalCartPrice h3{
-          text-align:center;
-          font-size:20;
-          margin-top:20;
-
-        }
-
-        #Header-container{
-          background-color:'green';
-          padding:15px;
-          border-radius:6px;
-        }
-
-      #company_name{
-        margin-bottom:15px;
-        color:white;
-        font-size:18px;
-      }
       </style>
-      </head>
-      <body>
+    </head>
+    <body>
+      <h1>Gegwajo Microfinance</h1>
 
-      <div class="Header-container" style="background-color:green;">
 
-        <h1>Gegwajo Microfinance</h1>
-       
-      
-      <h2>Ripoti ya siku</h2>
-      
+      <h1>Ripoti ya siku</h1>
+      <!-- First Table -->
       <table>
         <tr>
           <th>MKP</th>
-          <th>MKT</th> 
-           <th>WOTE</th> 
+          <th>MKT</th>
+          <th>WOTE</th>
           <th>REJ</th>
           <th>FIN</th>
-          
         </tr>
+        ${rows1}
+      </table>
 
-         <tr>
-         </tr>
-
-         <tr>
+      <!-- Second Table -->
+      <table>
+        <tr>
           <th>Marejesho</th>
-          <th>Faini</th> 
-           <th>Fomu + Bima</th> 
+          <th>Faini</th>
+          <th>Fomu + Bima</th>
           <th>Baki Jana</th>
           <th>Imetoka Kwa Bosi</th>
           <th>Imetoka Kwa kituo jirani</th>
           <th>Mapato Ya Jumla</th>
-          
         </tr>
-
-
-          <tr>
-         </tr>
-
-         <tr>
-          <th>Mkopo</th>
-          <th>Posho</th> 
-           <th>Imeenda Kwa Bosi</th> 
-          <th>Imeenda kituo jirani</th>
-          <th>Matumizi Mengine</th>
-          
-          <th>Matumizi Ya Jumla</th>
-          
-        </tr>
-
-
-
-         <tr>
-         </tr>
-
-         <tr>
-          <th>Inakabidhiwa</th>
-          
-        </tr>
-
-
-        ${table}
+        ${rows2}
       </table>
 
+      <!-- Third Table -->
+      <table>
+        <tr>
+          <th>Mkopo</th>
+          <th>Posho</th>
+          <th>Imeenda Kwa Bosi</th>
+          <th>Imeenda kituo jirani</th>
+          <th>Matumizi Mengine</th>
+          <th>Matumizi Ya Jumla</th>
+        </tr>
+        ${rows3}
+      </table>
 
-
-      <div id="totalCartPrice">
-
-      <h3>Inakabidhiwa: Balance/=</h3>
-
-      
-      </div>
-      
-      </body>
-    </html>
-      `;
-    return html;
-
-    console.log("table", table);
-  }
+      <!-- Fourth Table -->
+      <table>
+        <tr>
+          <th>Inakabidhiwa</th>
+        </tr>
+        ${rows4}
+      </table>
+    </body>
+  </html>
+  `;
+  return html;
+};
 
 
 
@@ -753,6 +688,7 @@ const TableRowComponent = ({ item}) => {
 
             
 
+
 {/*mwanzo wa fomu na bima*/}
       <View style={{
         flexDirection:'row',
@@ -785,9 +721,6 @@ const TableRowComponent = ({ item}) => {
       </View>
 
   {/*mwisho wa fomu na bima*/}
-
-    
-
 
 {/*mwanzo wa Full taarifa za marejesho View Ya 1*/}
 
@@ -862,6 +795,19 @@ style={globalStyles.FullRipotiYaSikuLeftContainer}
 style={globalStyles.FullRipotiYaSikuLeftText}
  >Imetoka kituo jirani</Text>
 </View>
+{/*mwanzo wa Left View*/} 
+
+
+{/*mwanzo wa Left View*/} 
+{item.KituoIlichotokaHela && (
+<View 
+style={globalStyles.FullRipotiYaSikuLeftContainer}
+>
+<Text 
+style={globalStyles.FullRipotiYaSikuLeftText}
+ >Kituo zilipotoka</Text>
+</View>
+)}
 {/*mwanzo wa Left View*/} 
 
 
@@ -988,7 +934,7 @@ style={globalStyles.FullRipotiYaSikuRightText}
 <View 
 style={globalStyles.FullRipotiYaSikuRightContainer}
 >
-{item.ImetokaKituoJirani > 0 ? (
+{item.KituoIlichotokaHela && item.ImetokaKituoJirani > 0 ? (
 <Text 
 style={globalStyles.FullRipotiYaSikuRightText}
  >{formatToThreeDigits(item.ImetokaKituoJirani)}</Text>
@@ -1001,7 +947,18 @@ style={globalStyles.FullRipotiYaSikuRightText}
 {/*mwanzo wa Right View*/} 
 
 
+{/*mwanzo wa Right View*/} 
+<View 
+style={globalStyles.FullRipotiYaSikuRightContainer}
+>
+{item.KituoIlichotokaHela && (
+<Text 
+style={globalStyles.FullRipotiYaSikuRightText}
+ >{item.KituoIlichotokaHela}</Text>
 
+ )}
+</View>
+{/*mwanzo wa Right View*/} 
 
 {/*mwanzo wa Right View*/} 
 <View 
@@ -1102,10 +1059,29 @@ style={globalStyles.FullRipotiYaSikuLeftText}
 <View 
 style={globalStyles.FullRipotiYaSikuLeftContainer}
 >
+
+
 <Text 
 style={globalStyles.FullRipotiYaSikuLeftText}
- >Imeenda kituo jirani</Text>
+ >Imeenda kituo jirani </Text>
+ 
 </View>
+{/*mwanzo wa Left View*/}
+
+
+{/*mwanzo wa Left View*/} 
+{item.KituoIlichoendaHela && (
+<View 
+style={globalStyles.FullRipotiYaSikuLeftContainer}
+>
+
+
+<Text 
+style={globalStyles.FullRipotiYaSikuLeftText}
+ >Kituo zilipokwenda </Text>
+ 
+</View>
+)}
 {/*mwanzo wa Left View*/} 
 
 
@@ -1245,6 +1221,22 @@ style={globalStyles.FullRipotiYaSikuRightText}
 </View>
 {/*mwanzo wa Right View*/} 
 
+
+
+{/*mwanzo wa Right View*/} 
+<View 
+style={globalStyles.FullRipotiYaSikuRightContainer}
+>
+{item.KituoIlichoendaHela && (
+<Text 
+style={globalStyles.FullRipotiYaSikuRightText}
+ >{item.KituoIlichoendaHela}</Text>
+ 
+ )}
+</View>
+{/*mwanzo wa Right View*/} 
+
+
 {/*mwanzo wa Right View*/} 
 <View 
 style={globalStyles.FullRipotiYaSikuRightContainer}
@@ -1335,13 +1327,46 @@ style={[globalStyles.FullRipotiYaSikuRightText,
 
 
 
+
+
+
+
 </Pressable>
+
+
 
 
 </View>
 
 {/*mwiso wa Full taarifa za marejesho View Ya 2*/}
 
+
+<TouchableOpacity 
+onPress={() => navigation.replace('Futa Ripoti', { ...item, postId: item.id })}
+style={{
+  width:'50%',
+}}
+>
+
+{item.JumlaMarejeshoYaLeo > 0 && (
+<Text style={{
+  color: "white" ,
+  // padding:13,
+   backgroundColor: "brown",
+   borderColor:'white',
+   borderWidth:1,
+   textAlign:'center',
+   borderRadius:8,
+   width:'100%',
+   fontFamily:'Light',
+   paddingVertical:10,
+   marginLeft:20,
+   marginVertical:20,
+  
+}}>Futa Ripoti</Text>
+
+)}
+</TouchableOpacity>
 
 
     </Pressable>

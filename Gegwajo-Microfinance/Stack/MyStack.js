@@ -44,6 +44,9 @@ import WamemalizaHawajakopaTena from '../Screens/WamemalizaHawajakopaTena';
 
 import OngezaKituo from '../Screens/OngezaKituo';
 
+import PreLoaderScreen from '../Screens/PreLoaderScreen';
+
+
 const Stack = createStackNavigator();
 
 function MyStack( {navigation}){
@@ -101,6 +104,13 @@ function MyStack( {navigation}){
       >
 
 
+<Stack.Screen
+      name="PreLoader Screen"
+      component={PreLoaderScreen}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
 
 
 

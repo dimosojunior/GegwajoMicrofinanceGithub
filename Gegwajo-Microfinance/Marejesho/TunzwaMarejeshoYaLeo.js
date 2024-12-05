@@ -441,15 +441,40 @@ const TableRowComponent = ({ item}) => {
   return (
     <View key={item.id} style={globalStyles.row2}>
       <Text style={[globalStyles.cell, globalStyles.firstNameColumn]}>{item.JinaKamiliLaMteja}</Text>
-    
-
-      {item.RejeshoLililoPokelewaLeo > 0 ? (
-      <Text style={[globalStyles.cell, globalStyles.otherColumns]}>{formatToThreeDigits(item.RejeshoLililoPokelewaLeo)}</Text>
+      <Text style={[globalStyles.cell, globalStyles.tarehecolumn]}>{formatDate2(item.Created)}</Text>
+      {item.KiasiAnachokopa > 0 ? (
+      <Text style={[globalStyles.cell, globalStyles.otherColumns]}>{formatToThreeDigits(item.KiasiAnachokopa)}</Text>
      ):(
      <Text style={[globalStyles.cell, globalStyles.otherColumns]}>0</Text>
      )}
 
 
+      {item.KiasiAlicholipa > 0 ? (
+      <Text style={[globalStyles.cell, globalStyles.otherColumns]}>{formatToThreeDigits(item.KiasiAlicholipa)}</Text>
+      ):(
+       <Text style={[globalStyles.cell, globalStyles.otherColumns]}>0</Text>
+      )}
+
+      {item.JumlaYaDeni > 0 ? (
+      <Text style={[globalStyles.cell, globalStyles.otherColumns]}>{formatToThreeDigits(item.JumlaYaDeni)}</Text>
+       ):(
+       <Text style={[globalStyles.cell, globalStyles.otherColumns]}>0</Text>
+       )}
+
+      <TouchableOpacity
+        style={[
+          globalStyles.cell,
+          globalStyles.buttoncolumn,
+          { justifyContent: 'center', alignItems: 'center' },
+        ]}
+        onPress={() => handlePressDetailsPage(item)}
+      >
+        <MaterialCommunityIcons
+          name="gesture-tap-button"
+          size={30}
+          style={globalStyles.TableIconColor}
+        />
+      </TouchableOpacity>
 
 
     </View>
@@ -462,19 +487,44 @@ const TableRowComponent = ({ item}) => {
 
 
 
+
   return (
     <View key={item.id} style={globalStyles.row2}>
       <Text style={[globalStyles.cell, globalStyles.firstNameColumn]}>{item.JinaKamiliLaMteja}</Text>
-    
-
-      {item.RejeshoLililoPokelewaLeo > 0 ? (
-      <Text style={[globalStyles.cell, globalStyles.otherColumns]}>{formatToThreeDigits(item.RejeshoLililoPokelewaLeo)}</Text>
+      <Text style={[globalStyles.cell, globalStyles.tarehecolumn]}>{formatDate2(item.Created)}</Text>
+      {item.KiasiAnachokopa > 0 ? (
+      <Text style={[globalStyles.cell, globalStyles.otherColumns]}>{formatToThreeDigits(item.KiasiAnachokopa)}</Text>
      ):(
      <Text style={[globalStyles.cell, globalStyles.otherColumns]}>0</Text>
      )}
 
 
+      {item.KiasiAlicholipa > 0 ? (
+      <Text style={[globalStyles.cell, globalStyles.otherColumns]}>{formatToThreeDigits(item.KiasiAlicholipa)}</Text>
+      ):(
+       <Text style={[globalStyles.cell, globalStyles.otherColumns]}>0</Text>
+      )}
 
+      {item.JumlaYaDeni > 0 ? (
+      <Text style={[globalStyles.cell, globalStyles.otherColumns]}>{formatToThreeDigits(item.JumlaYaDeni)}</Text>
+       ):(
+       <Text style={[globalStyles.cell, globalStyles.otherColumns]}>0</Text>
+       )}
+
+      <TouchableOpacity
+        style={[
+          globalStyles.cell,
+          globalStyles.buttoncolumn,
+          { justifyContent: 'center', alignItems: 'center' },
+        ]}
+        onPress={() => handlePressDetailsPage(item)}
+      >
+        <MaterialCommunityIcons
+          name="gesture-tap-button"
+          size={30}
+          style={globalStyles.TableIconColor}
+        />
+      </TouchableOpacity>
 
     </View>
   )
@@ -597,9 +647,11 @@ const TableRowComponent = ({ item}) => {
               <View style={globalStyles.table}>
                 <View style={[globalStyles.row, globalStyles.header]}>
                   <Text style={[globalStyles.cell2, globalStyles.firstNameColumn]}>Jina</Text>
-               
-                  <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Kiasi</Text>
-                 
+                  <Text style={[globalStyles.cell2, globalStyles.tarehecolumn]}>Tarehe</Text>
+                  <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Mkopo</Text>
+                  <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Lipwa</Text>
+                  <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Deni</Text>
+                  <Text style={[globalStyles.cell2, globalStyles.buttoncolumn]}>Hali</Text>
       
                 </View>
 
@@ -615,105 +667,6 @@ const TableRowComponent = ({ item}) => {
           {isLoading&&(<ActivityIndicator/>)}
           </>
           )}
-
-
-
-{/*mwanzo wa jumla*/}
-    <Pressable>
-    
-    <View 
-style={[globalStyles.FullRipotiYaSikuContainer,
-  {
-    width:'90%',
-    backgroundColor:'#c07d18',
-    marginHorizontal:20,
-  }]}
->
-
-<Pressable 
-style={globalStyles.FullRipotiYaSikuLeftMajorContainer}
->
-  
-
-
-{/*mwanzo wa Left View*/} 
-<View 
-style={[globalStyles.FullRipotiYaSikuLeftContainer,
-  {
-    //backgroundColor:'#c07d18',
-  }
-
-  ]}
->
-<Text 
-style={[globalStyles.FullRipotiYaSikuLeftText,
-  {
-    fontFamily:'Bold',
-  }
-
-  ]}
- >Jumla</Text>
-</View>
-{/*mwanzo wa Left View*/} 
-
-
-</Pressable>
-
-
-
-
-
-{/*Right start here----------------------------------------------------*/}
-
-<Pressable 
-style={globalStyles.FullRipotiYaSikuRightMajorContainer}
->
- 
-
-
-
-{/*mwanzo wa Right View*/} 
-<View 
-style={[globalStyles.FullRipotiYaSikuRightContainer,
-
-   {
-    //backgroundColor:'#c07d18',
-  }
-
-
-  ]}
->
-{totalRejeshoLeo > 0 ? (
-<Text 
-style={[globalStyles.FullRipotiYaSikuRightText,
-  {
-    fontFamily:'Bold',
-  }
-
-  ]}
- >{formatToThreeDigits(totalRejeshoLeo)}</Text>
- ):(
-<Text 
-style={[globalStyles.FullRipotiYaSikuRightText,
-  {
-    fontFamily:'Bold',
-  }
-
-  ]}
- >0</Text>
- )}
-</View>
-{/*mwanzo wa Right View*/} 
-
-
-</Pressable>
-
-
-</View>
-
-    </Pressable>
-
-  {/*mwisho wa jumla*/}
          
               </View>
 
@@ -771,7 +724,7 @@ style={[globalStyles.FullRipotiYaSikuRightText,
 onPress={() => setModalVisible(true)}
 style={{
    padding: 10,
-    width:'100%',
+    width:'50%',
     borderRadius: 6,
     flexDirection: "row",
     alignItems: "center",
@@ -781,9 +734,9 @@ style={{
  >
     <Text 
     style={{
-     color: "white" ,
+      color: "white" ,
       // padding:13,
-       backgroundColor: "black",
+       backgroundColor: "green",
        borderColor:'white',
        borderWidth:1,
        textAlign:'center',
@@ -798,6 +751,59 @@ style={{
 </TouchableOpacity>
 
 
+       
+          <TouchableOpacity
+         //onPress={() => navigation.navigate("Home Stack")}
+           
+            style={{
+              
+              padding: 10,
+              width:'50%',
+              borderRadius: 6,
+              flexDirection: "row",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 10,
+            }}
+          >
+            {totalRejeshoLeo > 0 ? (
+            <Text style={{
+             //fontSize: 16, 
+             //fontWeight: "500", 
+             color: "white" ,
+            // padding:13,
+             backgroundColor: "black",
+             borderColor:'white',
+             borderWidth:1,
+             textAlign:'center',
+             borderRadius:8,
+             width:'100%',
+             fontFamily:'Light',
+             paddingVertical:10,
+
+           }}>
+              Jumla: {formatToThreeDigits(totalRejeshoLeo)}
+            </Text>
+            ):(
+           <Text style={{
+             //fontSize: 16, 
+             //fontWeight: "500", 
+             color: "white" ,
+            // padding:13,
+             backgroundColor: "black",
+             borderColor:'white',
+             borderWidth:1,
+             textAlign:'center',
+             borderRadius:8,
+             width:'100%',
+             fontFamily:'Light',
+             paddingVertical:10,
+
+           }}>
+              Jumla: 0
+            </Text>
+            )}
+          </TouchableOpacity>
           
 
         </Pressable>

@@ -198,6 +198,8 @@ const [userData, setUserData] = useState({});
 const [totalRejeshoLeo, setTotalRejeshoLeo] = useState(0);
 const [totalFainiLeo, setTotalFainiLeo] = useState(0);
 
+const [totalRejeshoLeo2, setTotalRejeshoLeo2] = useState(0);
+
 // const getItems = async (token) => {
 //   if (endReached) {
 //     setLoading(false);
@@ -309,7 +311,7 @@ const getMarejeshoYaLeo = async (token) => {
 
     if (data.marejesho_queryset.length > 0) {
       setmarejesho_queryset(data.marejesho_queryset);
-      setTotalRejeshoLeo(data.total_rejesho_leo); 
+      setTotalRejeshoLeo2(data.total_rejesho_leo); 
     }
   } catch (error) {
     console.error("Error in getMarejeshoYaLeo:", error);
@@ -1133,7 +1135,7 @@ style={[globalStyles.FullRipotiYaSikuRightContainer,
 
   ]}
 >
-{totalRejeshoLeo > 0 ? (
+{totalRejeshoLeo2 > 0 ? (
 <Text 
 style={[globalStyles.FullRipotiYaSikuRightText,
   {
@@ -1141,7 +1143,7 @@ style={[globalStyles.FullRipotiYaSikuRightText,
   }
 
   ]}
- >{formatToThreeDigits(totalRejeshoLeo)}</Text>
+ >{formatToThreeDigits(totalRejeshoLeo2)}</Text>
  ):(
 <Text 
 style={[globalStyles.FullRipotiYaSikuRightText,

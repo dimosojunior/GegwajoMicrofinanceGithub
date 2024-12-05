@@ -224,11 +224,11 @@ const handleErrorMessage = (error) => {
 
                     <View style={styles.dataContainer}>
                         <TextInput 
-                        placeholder='Jina La Kituo' 
+                        placeholder='Jina La Kuingilia' 
                         style={[styles.textinput,{
                             width:width-100
                         }]} 
-                        placeholderTextColor={COLORS.white}
+                        placeholderTextColor="#c07d18"
                         //keyboardType={'email-address'}
                         value={username}
                         onChangeText={text => setUsername(text)} 
@@ -254,11 +254,11 @@ const handleErrorMessage = (error) => {
           >
           <TextInput
           style= {[styles.textinput,{ color: 'white',width:width-100}]}
-          placeholder="Ingiza neno siri"
+          placeholder="Neno Siri La Kuingilia"
           secureTextEntry={!isPasswordVisible} // Toggle secureTextEntry based on isPasswordVisible state
           value={password}
           onChangeText={(text) => setPassword(text)}
-        placeholderTextColor={COLORS.white}
+        placeholderTextColor="#c07d18"
         />
 
         <View style={{
