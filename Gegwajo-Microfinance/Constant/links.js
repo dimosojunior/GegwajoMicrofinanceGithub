@@ -3,7 +3,8 @@
 //for project or user
 //export const EndPoint = 'https://mfugajiappv1.pythonanywhere.com'
 
-export const EndPoint = 'https://microfinanceapp.pythonanywhere.com'
+//export const EndPoint = 'https://microfinanceapp.pythonanywhere.com'
+export const EndPoint = 'https://gegwajomicrofinance.xyz'
 
 //https://usmaapis.pythonanywhere.com/
 //export const MyLoadingAnimation = '../assets/Loading/loading4.json';

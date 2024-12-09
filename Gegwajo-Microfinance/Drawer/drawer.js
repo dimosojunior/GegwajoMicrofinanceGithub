@@ -19,7 +19,7 @@ import { EventRegister } from 'react-native-event-listeners';
 //import theme from '../theme/theme';
 import COLORS  from '../Constant/colors';
 //import themeContext from '../theme/themeContext';
-import React, {useState,useCallback, useEffect} from 'react';
+import React, {useState,useCallback,useContext, useEffect} from 'react';
 import {useFonts} from 'expo-font';
 import Header from '../Header/header';
 
@@ -56,6 +56,12 @@ import NjeYaMkatabaTarehe from '../Screens/NjeYaMkatabaTarehe';
 import SignupScreen from '../AccountScreens/SignupScreen';
 
 import { useFocusEffect } from '@react-navigation/native';
+
+import { UserContext } from '../UserContext';
+
+//import Scan from '../Screens/Scan';
+
+
 const { width, height } = Dimensions.get('window');
 const Drawer = createDrawerNavigator();
 function MyDrawer(){
@@ -74,6 +80,7 @@ function MyDrawer(){
   
 });
 
+const { userData, userToken, setUserData } = useContext(UserContext);
 
   const openUrl = async (url) => {
         const isSupported = await Linking.canOpenURL(url);
@@ -93,152 +100,53 @@ const [modalVisible, setModalVisible] = useState(false);
   const [darkMode, setdarkMode] = useState(false)
   //const theme = useContext(themeContext)
 const navigation = useNavigation();
-const [userData, setUserData] = useState({});
-  const [userToken, setUserToken] = useState('');
+
+//const [userData, setUserData] = useState({});
+ // const [userToken, setUserToken] = useState('');
 
 
 
 
-  useEffect(() => {
-    AsyncStorage.getItem("userToken").then(token => {
-      setUserToken(token)
-    })
-    fetchUserData();
-  }, [userData]);
+ //  useEffect(() => {
+ //    AsyncStorage.getItem("userToken").then(token => {
+ //      setUserToken(token)
+ //    })
+ //    fetchUserData();
+ //  }, [userToken]);
 
-  const fetchUserData = async () => {
-    try {
-      const userDataJSON = await AsyncStorage.getItem('userData');
-      if (userDataJSON) {
-        const parsedUserData = JSON.parse(userDataJSON);
-        setUserData(parsedUserData);
+ //  const fetchUserData = async () => {
+ //    try {
+ //      const userDataJSON = await AsyncStorage.getItem('userData');
+ //      if (userDataJSON) {
+ //        const parsedUserData = JSON.parse(userDataJSON);
+ //        setUserData(parsedUserData);
 
-        //console.log(parsedUserData);
-        console.log("Aliye Login", userData.username);
-      }
-    } catch (error) {
-      // console.log(error);
-    }
-  };
-
-
- useEffect(() => {
-    checkLoggedIn();
-
-
-  }, [userToken]);
-
-  const checkLoggedIn = async () => {
-    const token = await AsyncStorage.getItem('userToken');
-    setUserToken(token);
-  };
-
-
-
-
-
-// const [isLoading2, setIsLoading2] = useState(false);
-
-// const handleErrorMessage = (error) => {
-//     if (error.response) {
-//       // The request was made and the server responded with an error status code
-//       // if (error.response.status === 401) {
-//       //   showAlertFunction('Registration error. Please try again later.');
-//       // } else if (error.response.status === 404) {
-//       //   showAlertFunction('Not Found: The requested resource was not found.');
-
-//       // } 
-//       // else {
-//       //   showAlertFunction('An error occurred while processing your request.');
-//       // }
-//     }  if (error.message === 'Network Error') {
-//       showAlertFunction('Tatizo la mtandao, washa data na ujaribu tena.');
-//       setIsLoading2(false);
-//     } else {
-//       showAlertFunction('Kuna tatizo kwenye ubadilishaji wa taarifa zako');
-//       setIsLoading2(false);
-//     }
-//   };
-
-
-
-//   useEffect(() => {
-//     AsyncStorage.getItem("userToken").then(token => {
-//       setUserToken(token)
-//     })
-   
-//   }, []);
-
-
-//  useEffect(() => {
-//     checkLoggedIn();
-
-
-//   }, [userToken]);
-
-
-//   const checkLoggedIn = async () => {
-//     setIsLoading2(true);
-//     const token = await AsyncStorage.getItem('userToken');
-//     setUserToken(token);
-//     if (userToken) {
-//       try {
-//         const userResponse = await axios.get(
-//           EndPoint + '/Account/user_data/',
-//           {
-//             headers: {
-//               Authorization: `Token ${token}`,
-//             },
-//           }
-//         );
-
-//         const userData1 = userResponse.data;
-//         setUserData(userData1);
-       
-//       // setEmail(userData.email);
-//       // setUsername(userData.username);
-//       // setPhone(userData.phone);
-//       // setcompany_name(userData.company_name);
-//       setIsLoading2(false);
-       
-//       } catch (error) {
-//         handleErrorMessage(error);
+ //        //console.log(parsedUserData);
         
-//       }
-//     }
-//   };
+ //      }
+ //    } catch (error) {
+ //      // console.log(error);
+ //    }
+ //  };
 
 
-
-// console.log("USERDATA NAME", userData.username);
-
-
+ // useEffect(() => {
+ //    checkLoggedIn();
 
 
+ //  }, [userToken]);
 
-
-
-//kwa ajili ya kuchange theme
-  // useEffect(() => {
-  //   const listener = EventRegister.addEventListener('ChangeTheme', (data) => {
-  //     setdarkMode(data)
-  //     //console.log(data)
-  //   })
-  //   return () => {
-  //     EventRegister.removeAllListeners(listener)
-  //   }
-  // }, [darkMode])
+ //  const checkLoggedIn = async () => {
+ //    const token = await AsyncStorage.getItem('userToken');
+ //    setUserToken(token);
+ //  };
 
 
 
 
 
-
-
-
-
-
-
+// console.log("Drawer userToken", userToken);
+// console.log("Drawer userData", userData);
 
 
 
@@ -306,7 +214,7 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
                 // backgroundColor: 'rgb(5,5,49)',
               }}>
 
-              {userData && userData.username ? (
+              
 
                 <ScrollView>
 
@@ -346,7 +254,7 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
                       color: 'white'
                     }}>Karibu => {userData ? userData.username : ''}</Text>
                   
-              {userData && userData.is_admin === true && (
+              {((userData && userData.is_admin === true) || (userData && userData.is_cashier === true))  && (
                     <TouchableOpacity
               style={{
                 flexDirection: "row",
@@ -426,11 +334,18 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
 
 
                    <TouchableOpacity
+                   
+                  // onPress={() => {
+                  //   setDropdownVisible2(false);
+                  //   Linking.openURL(WebsiteLink);
+                  //   //navigation.navigate("Faini Za Leo"); // Navigate to first option
+                  // }}
+
                   onPress={() => {
                     setDropdownVisible2(false);
-                    Linking.openURL(WebsiteLink);
-                    //navigation.navigate("Faini Za Leo"); // Navigate to first option
+                    navigation.navigate("Vituo Vilivyosajiliwa"); // Navigate to first option
                   }}
+
                 >
                   <Text style={{ color: "white", marginVertical: 8 }}>
                     Vituo vyote
@@ -526,30 +441,11 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
 
                 </ScrollView>
 
-                ):(
+               
 
-                <View style={[
-                styles.button1,
-                {
-                 // backgroundColor:'black',
-                  //borderColor:'black',
-                  justifyContent:'center',
-                  //flex:1,
-                  alignItems:'center',
-                  height:height,
-                }
+            
 
-                ]}>
-                <Text style={{
-                  color:'white',
-                  marginBottom:10,
-                }}>Tafadhali subiri......</Text>
-                 
-               <ActivityIndicator size="large" color="red" /> 
-              </View>
-
-
-                )}
+                
               </View>
 
 
@@ -853,8 +749,19 @@ const [dropdownVisible2, setDropdownVisible2] = useState(false);
         />
 
 
-
-
+   {/* <Drawer.Screen
+          name="Scan"
+          options={{
+            drawerLabel: "Scan",
+            title: "Scan",
+            
+            drawerIcon: () => (
+              <FontAwesome name="user-circle" size={20} color="white" />
+            )
+          }}
+          component={Scan}
+        />
+*/}
 
 {/*<Drawer.Screen
   name="Ripoti"

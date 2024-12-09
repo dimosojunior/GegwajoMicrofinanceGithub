@@ -16,36 +16,44 @@ import AwesomeAlert from 'react-native-awesome-alerts';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { EventRegister } from 'react-native-event-listeners';
 
+import { UserProvider } from './UserContext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export default function App({navigation}) {
 
-
-
+const [userData, setUserData] = useState({});
   const [userToken, setUserToken] = useState('');
-  //const Stack = createStackNavigator();
+  
+useEffect(() => {
+  const listener = EventRegister.addEventListener('updateUserToken', async () => {
+    const userDataJSON = await AsyncStorage.getItem('userData');
+    if (userDataJSON) {
+      setUserData(JSON.parse(userDataJSON));
+    }
+  });
 
-  useEffect(() => {
-    // Listen for the 'updateUserToken' event
-    const tokenUpdateListener = EventRegister.addEventListener('updateUserToken', (token) => {
-      setUserToken(token);
-    });
+  return () => EventRegister.removeEventListener(listener);
+}, []);
 
-    // Cleanup the listener when the component unmounts
-    return () => {
-      EventRegister.removeEventListener(tokenUpdateListener);
-    };
-  }, []);
+
 
   return (
     <SafeAreaView style={styles.container}>
     
       
-     <NavigationContainer>
-          <MyDrawer />
-     </NavigationContainer>
+    
+
+      <UserProvider>
+      <NavigationContainer>
+        <MyDrawer />
+      </NavigationContainer>
+    </UserProvider>
       
 
       
       <StatusBar backgroundColor="white" barStyle="dark-content" />
+
+
     </SafeAreaView>
   );
 }

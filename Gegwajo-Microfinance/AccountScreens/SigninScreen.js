@@ -68,6 +68,34 @@ let [fontsLoaded] = useFonts({
 
   //const navigation = useNavigation();
 
+  useEffect(() => {
+    checkLoggedIn();
+  }, []);
+
+  const checkLoggedIn = async () => {
+    const token = await AsyncStorage.getItem('userToken');
+    if (token) {
+      try {
+        const userResponse = await axios.get(
+          EndPoint + '/Account/user_data/',
+          {
+            headers: {
+              Authorization: `Token ${token}`,
+            },
+          }
+        );
+
+        const userData = userResponse.data;
+       
+
+      } catch (error) {
+        
+      }
+    }
+  };
+
+
+
 
 // const [error, setError] = useState(null);
 const [errorMessage, setErrorMessage] = useState('');
@@ -147,6 +175,16 @@ const handleErrorMessage = (error) => {
       // hii inasaidia kupata a login user token automatically without
       // page refreshing
       EventRegister.emit('updateUserToken', token);
+
+        // Confirm AsyncStorage writes are complete before navigating
+    await Promise.all([
+      AsyncStorage.getItem('userToken'),
+      AsyncStorage.getItem('userData'),
+    ]);
+   
+
+   console.log("Token Saved:", token);
+console.log("UserData Saved:", userData);
 
 
 

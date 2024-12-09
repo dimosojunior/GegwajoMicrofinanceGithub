@@ -47,6 +47,13 @@ import OngezaKituo from '../Screens/OngezaKituo';
 import PreLoaderScreen from '../Screens/PreLoaderScreen';
 
 
+import VituoVilivyosajiliwa from '../Screens/VituoVilivyosajiliwa';
+import DeleteKituo from '../Screens/DeleteKituo';
+
+import TaarifaZaVituo from '../Screens/TaarifaZaVituo';
+import DeleteTaarifaZaKituo from '../Screens/DeleteTaarifaZaKituo';
+
+
 const Stack = createStackNavigator();
 
 function MyStack( {navigation}){
@@ -104,14 +111,14 @@ function MyStack( {navigation}){
       >
 
 
-<Stack.Screen
+{/*<Stack.Screen
       name="PreLoader Screen"
       component={PreLoaderScreen}
       // options={ () => ({ 
       //       headerLeft: () => <Header  title='About Page' />,
       //     })}
       />
-
+*/}
 
 
  <Stack.Screen
@@ -282,6 +289,48 @@ function MyStack( {navigation}){
       //       headerLeft: () => <Header  title='About Page' />,
       //     })}
       />
+
+
+
+
+        <Stack.Screen
+      name="Vituo Vilivyosajiliwa"
+      component={VituoVilivyosajiliwa}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
+         <Stack.Screen
+      name="Delete Kituo"
+      component={DeleteKituo}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
+            <Stack.Screen
+      name="Taarifa Za Vituo"
+      component={TaarifaZaVituo}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
+
+            <Stack.Screen
+      name="Delete Taarifa Za Kituo"
+      component={DeleteTaarifaZaKituo}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
+
 
 
  
