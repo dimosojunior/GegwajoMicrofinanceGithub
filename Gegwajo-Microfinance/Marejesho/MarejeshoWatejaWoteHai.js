@@ -1042,6 +1042,52 @@ style={globalStyles.FullRipotiYaSikuRightText}
           )}
          
               </View>
+
+
+                            </>  
+
+   ) :(
+
+     <View style={globalStyles.table}>
+                <View style={[globalStyles.row, globalStyles.header]}>
+                {userData && userData.is_cashier === true && (
+                <Text style={[globalStyles.cell2, globalStyles.buttoncolumn]}>Lipa</Text>
+                )}
+
+               
+
+                  <Text style={[globalStyles.cell2, globalStyles.firstNameColumn]}>Jina</Text>
+                  <Text style={[globalStyles.cell2, globalStyles.tarehecolumn]}>Tarehe</Text>
+                  <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Mkopo</Text>
+                  <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Lipwa</Text>
+                  <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Deni</Text>
+                  
+                </View>
+             
+           {/*  mwanzo wa message hakuna taarifa*/}
+           <View style={[globalStyles.noitemTextContainer,{
+            alignItems:'flex-start',
+
+           }]}>
+            <Text style={[globalStyles.noitemText,
+              {
+                textAlign:'Left',
+              }
+
+              ]}>hukuna Taarifa
+            </Text>
+
+
+          </View>
+             {/*  mwisho wa message hakuna taarifa*/}
+               
+
+                 </View>
+
+ 
+
+  )} 
+
          
         {/* mwanzo wa kudisplay marejesho ya leo na faini za leo   */}   
         <View style={{
@@ -1327,19 +1373,8 @@ style={[globalStyles.FullRipotiYaSikuRightText,
 
 
          </View>
-          {/* mwanzo wa kudisplay marejesho ya leo na faini za leo   */}  
-               </>  
-
-   ) :(
-   <View style={[globalStyles.noitemTextContainer,{}]}>
-  <Text style={globalStyles.noitemText}>hukuna Taarifa
-  </Text>
-
-
-</View>
-
-  )} 
-
+          {/* mwisho wa kudisplay marejesho ya leo na faini za leo   */}  
+ 
 
             </ScrollView>
           </ScrollView>

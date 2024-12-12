@@ -20,9 +20,22 @@ import * as FileSystem from 'expo-file-system';
 import * as DocumentPicker from 'expo-document-picker';
 import MinorHeader from '../Header/MinorHeader';
 
+
 const { width, height } = Dimensions.get('window');
 
-const AddMteja = ({ navigation }) => {
+const RenewMteja = ({ navigation, route }) => {
+
+  const { postId } = route.params;
+  // const [postDetails, setPostDetails] = useState({
+  //   Title: '',
+  //   Maelezo: '',
+  //   // PichaYaPost: '',
+  //   // PichaYaPost2: '',
+  //   // PichaYaPost3: '',
+  //   // PichaYaPost4: '',
+  //   // PichaYaPost5: '',
+  // });
+
   let [fontsLoaded] = useFonts({
     'Bold': require('../assets/fonts/Poppins-Bold.ttf'),
     'Medium': require('../assets/fonts/Poppins-Medium.ttf'),
@@ -46,6 +59,29 @@ const AddMteja = ({ navigation }) => {
 
 
 
+  // State variable to store the RoomClasses data
+  const [JinaLaKituo, setJinaLaKituo] = useState([]);
+ const [selectedJinaLaKituo, setSelectedJinaLaKituo] = useState(null);
+ 
+  // Fetch Universities
+  useEffect(() => {
+    fetch(`${EndPoint}/Add/AllVituoVyote/`)
+      .then((response) => response.json())
+      .then((data) => {
+        setJinaLaKituo(data);
+        //console.log("Well");
+        
+        // Set the default selectedRoomClass if needed
+        //setSelectedRoomClass(data[0]); // For example, set the first RoomClass as default
+      })
+      .catch((error) => {
+        //console.error('Error fetching Product categories:', error);
+        //showAlertFunction("Error fetching Universities");
+      });
+  }, []);
+
+
+
 
 const [modalVisible, setModalVisible] = useState(false);
 const [isModalVisible, setIsModalVisible] = useState(false); // New state variable
@@ -56,41 +92,21 @@ const [OngezaPichaClose, setOngezaPichaClose] = useState(false);
 
 
 
-
-
-const [PichaYaMteja, setPichaYaMteja] = useState(null);
-
-
-
-//MWANZO WA PICK IMAGE FROM THE PHONE
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1,
-    });
- 
-      setPichaYaMteja(result.assets[0].uri); // Use assets array
-      //console.log("PROJECT IMAGE", PichaYaMteja)
-     // processImage(); // Use assets array
-    // console.log("RESULT 1" ,result);
-  };
-
-
-
-
 const [JinaKamiliLaMteja, setJinaKamiliLaMteja] = useState('');
 const [MaelezoYaMteja, setMaelezoYaMteja] = useState('');
 const [SimuYaMteja, setSimuYaMteja] = useState('');
 //const [EmailYaMteja, setEmailYaMteja] = useState('');
 const [Mahali, setMahali] = useState('');
-const [KiasiAnachokopa, setKiasiAnachokopa] = useState(0);
+const [KiasiAnachokopa, setKiasiAnachokopa] = useState('');
 const [SimuYaMzaminiWa1, setSimuYaMzaminiWa1] = useState('');
 const [SimuYaMzaminiWa2, setSimuYaMzaminiWa2] = useState('');
 const [JinaLaMzaminiWa1, setJinaLaMzaminiWa1] = useState('');
 const [JinaLaMzaminiWa2, setJinaLaMzaminiWa2] = useState('');
 
+
+
+// const [Title, setTitle] = useState('');
+// const [Maelezo, setMaelezo] = useState('');
 
   const [userData, setUserData] = useState({});
   const [userToken, setUserToken] = useState('');
@@ -155,7 +171,7 @@ const [JinaLaMzaminiWa2, setJinaLaMzaminiWa2] = useState('');
   const [isPending, setPending] = useState(false);
   const emailRegex = /\S+@\S+\.\S+/;
 
-  
+  //console.log("PichaYaPost", PichaYaPost);
 
   const handleErrorMessage = (error) => {
     if (error.response) {
@@ -165,7 +181,7 @@ const [JinaLaMzaminiWa2, setJinaLaMzaminiWa2] = useState('');
       showAlertFunction('Tatizo la mtandao, washa data na ujaribu tena.');
       setIsLoading(false);
     } else {
-      showAlertFunction('Kuna tatizo kwenye usajili wa mteja mpya');
+      showAlertFunction('Kuna tatizo kwenye ubadilishaji wa taarifa za mteja');
       setIsLoading(false);
     }
   };
@@ -174,39 +190,73 @@ const [JinaLaMzaminiWa2, setJinaLaMzaminiWa2] = useState('');
 
 
 
-  // State variable to store the RoomClasses data
-  const [JinaLaKituo, setJinaLaKituo] = useState([]);
- const [selectedJinaLaKituo, setSelectedJinaLaKituo] = useState(null);
- 
-  // Fetch Universities
-  useEffect(() => {
-    fetch(`${EndPoint}/Add/AllVituoVyote/`)
-      .then((response) => response.json())
-      .then((data) => {
-        setJinaLaKituo(data);
-        //console.log("Well");
-        
-        // Set the default selectedRoomClass if needed
-        //setSelectedRoomClass(data[0]); // For example, set the first RoomClass as default
-      })
-      .catch((error) => {
-        //console.error('Error fetching Product categories:', error);
-        //showAlertFunction("Error fetching Universities");
-      });
-  }, []);
+
+
+useEffect(() => {
+  const fetchPostDetails = async () => {
+    const token = await AsyncStorage.getItem('userToken');
+    if (token) {
+      setUserToken(token);  // Set the token before making the API call
+      try {
+        const response = await axios.get(`${EndPoint}/RetrieveWatejaWoteView/${postId}/`, {
+          headers: {
+            Authorization: `Token ${token}`,  // Use the retrieved token
+          },
+        });
+        const data = response.data;
+
+       setJinaKamiliLaMteja(data.JinaKamiliLaMteja);
+       setMaelezoYaMteja(data.MaelezoYaMteja);
+       setSimuYaMteja(data.SimuYaMteja.toString());
+       setMahali(data.Mahali);
+       setKiasiAnachokopa(data.KiasiAnachokopa.toString()); // Convert to string
+       
+       setSimuYaMzaminiWa1(data.SimuYaMzaminiWa1.toString());
+       setSimuYaMzaminiWa2(data.SimuYaMzaminiWa2.toString());
+       setJinaLaMzaminiWa1(data.JinaLaMzaminiWa1);
+       setJinaLaMzaminiWa2(data.JinaLaMzaminiWa2);
+
+
+        //console.log("Data fetched successfully");
+      } catch (error) {
+        handleErrorMessage(error);
+        //console.log("Error fetching post details:", error);
+      }
+    }
+  };
+  
+  // Ensure token is available first before making the API call
+  if (userToken) {
+    fetchPostDetails();
+  }
+}, [postId, userToken]);
+
+// Fetch user token first in a separate useEffect
+useEffect(() => {
+  const getToken = async () => {
+    const token = await AsyncStorage.getItem('userToken');
+    setUserToken(token);  // Token is set here
+  };
+  getToken();
+}, []);  // Run this only once when the component is mounted
 
 
 
 
 
-const handleRegistration = async () => {
+console.log("SimuYaMteja", SimuYaMteja);
+console.log("KiasiAnachokopa", KiasiAnachokopa);
+
+  const handleUpdatePost = async () => {
     setIsLoading(true);
     const token = await AsyncStorage.getItem('userToken');
 
     if (userToken) {
-        const formData = new FormData();
-        
-        if (JinaKamiliLaMteja) {
+      const formData = new FormData();
+    
+
+
+  if (JinaKamiliLaMteja) {
             formData.append('JinaKamiliLaMteja', JinaKamiliLaMteja);
         } else {
             showAlertFunction('Tafadhali ingiza jina la mteja ?');
@@ -269,52 +319,6 @@ const handleRegistration = async () => {
 
 
 
-        //   if (EmailYaMteja) {
-        //     formData.append('EmailYaMteja', EmailYaMteja);
-        // } 
-
-        //   if (!emailRegex.test(EmailYaMteja)) {
-        //   showAlertFunction("Tafadhali fuata kanuni za kuandika email, @");
-        //   return;
-        // }
-
-
-          // Validate phone number
-  if (!SimuYaMteja.startsWith("0")) {
-    showAlertFunction("Namba ya simu lazima ianze na 0");
-    return;
-  }
-
-  if (SimuYaMteja.length !== 10) {
-    showAlertFunction("Namba ya simu lazima iwe na tarakimu 10");
-    return;
-  }
-
-
-           // Validate phone number
-  if (!SimuYaMzaminiWa1.startsWith("0")) {
-    showAlertFunction("Namba ya simu lazima ianze na 0");
-    return;
-  }
-
-  if (SimuYaMzaminiWa1.length !== 10) {
-    showAlertFunction("Namba ya simu lazima iwe na tarakimu 10");
-    return;
-  }
-
-
-           // Validate phone number
-  if (!SimuYaMzaminiWa2.startsWith("0")) {
-    showAlertFunction("Namba ya simu lazima ianze na 0");
-    return;
-  }
-
-  if (SimuYaMzaminiWa2.length !== 10) {
-    showAlertFunction("Namba ya simu lazima iwe na tarakimu 10");
-    return;
-  }
-
-
           if (Mahali) {
             formData.append('Mahali', Mahali);
         } else {
@@ -338,49 +342,31 @@ const handleRegistration = async () => {
             formData.append('MaelezoYaMteja', MaelezoYaMteja);
         } 
 
-        // Ongeza picha kwenye `FormData` tu kama imechaguliwa
-        if (PichaYaMteja) {
-            formData.append('PichaYaMteja', {
-                uri: PichaYaMteja,
-                name: 'PichaYaMteja.jpg',
-                type: 'image/jpeg',
-            });
-        }
-
-      
-
-        axios.post(EndPoint + '/AddWatejaWoteView/', formData, {
-            headers: {
-                Authorization: `Token ${userToken}`,
-                'Content-Type': 'multipart/form-data',
-            },
-        }).then(response => {
-            setIsLoading(false);
-            showAlertFunction("Umefanikiwa Kumsajili mteja mpya");
-            setdisplayContentsState(true);
-            //console.log("Well");
-            setJinaKamiliLaMteja('');
-            setJinaLaMzaminiWa1('');
-            setJinaLaMzaminiWa2('');
-            setPichaYaMteja('');
-            setMaelezoYaMteja('');
-            setSimuYaMteja(0);
-            setSimuYaMzaminiWa1(0);
-            setSimuYaMzaminiWa2(0);
-            //setEmailYaMteja('');
-            setMahali('');
-            setKiasiAnachokopa(0);
+        
 
 
 
-        }).catch(error => {
-            setIsLoading(false);
-            setdisplayContentsState(false);
-            console.log("ERRORR", error);
-            handleErrorMessage(error);
-        });
+
+ 
+      axios.put(EndPoint + `/UpdateWatejaWotePostView/${postId}/edit/`, formData, {
+        headers: {
+          Authorization: `Token ${userToken}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      }).then(response => {
+        setIsLoading(false);
+        showAlertFunction("Umefanikiwa kumsajili mteja");
+        navigation.replace('Home Stack');
+        //console.log("Well");
+      }).catch(error => {
+        setIsLoading(false);
+        console.log(error);
+        handleErrorMessage(error);
+      });
     }
-};
+  };
+
+
 
 
 
@@ -443,7 +429,7 @@ const handleRegistration = async () => {
 
             <View style={styles.forgotDes}>
               <Text style={styles.forgotDesLbl}>
-                Ingiza taarifa kwa usahihi kuweza kumsajili mteja
+                Ingiza taarifa kwa usahihi kuweza kumsajili mteja tena
               </Text>
            {/*   <Text style={styles.forgotDesLbl}>+91 1234567890</Text>*/}
             </View>
@@ -724,7 +710,7 @@ const handleRegistration = async () => {
 
             //paddingVertical:20,
           }]}
-          placeholder="Ingiza jina kamili la mzamini wa kwanza"
+          placeholder="Ingiza jina la mzamini wa kwanza"
           //keyboardType="numeric"
           
           value={JinaLaMzaminiWa1}
@@ -863,7 +849,7 @@ const handleRegistration = async () => {
 
             //paddingVertical:20,
           }]}
-          placeholder="Ingiza jina kamili la mzamini wa pili"
+          placeholder="Ingiza jina la mzamini wa pili"
           //keyboardType="numeric"
           
           value={JinaLaMzaminiWa2}
@@ -1099,7 +1085,7 @@ const handleRegistration = async () => {
                   borderWidth:1,
                // backgroundColor:'black'
               }}
-              onPress={handleRegistration}>
+              onPress={handleUpdatePost}>
                 <Text style={styles.registerLbl}>Sajili mteja</Text>
                  <FontAwesome name='user-circle' 
                 size={28}
@@ -1178,8 +1164,7 @@ const handleRegistration = async () => {
     </>
   );
 };
-
-export default AddMteja;
+export default RenewMteja;
 
 const styles = StyleSheet.create({
   mainCon: {

@@ -406,8 +406,7 @@ const TableRowComponent = ({ item}) => {
 
  if (item.username.toLowerCase().includes(input.toLowerCase())) {
 
-
-      return (
+    return (
     <View key={item.id} style={globalStyles.row2}>
 
 
@@ -505,7 +504,7 @@ const TableRowComponent = ({ item}) => {
               <TextInput
                 value={input}
                 onChangeText={(text) => setInput(text)}
-                placeholder="Ingiza kituo"
+                placeholder="jina la kuingilia"
                 placeholderTextColor="black"
                 style={globalStyles.AppInputHomeScreenOtherPages}
               />

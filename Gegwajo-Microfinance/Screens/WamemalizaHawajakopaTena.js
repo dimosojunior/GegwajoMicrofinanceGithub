@@ -188,7 +188,7 @@ const handleRefresh = async () => {
       });
       const data = await response.json();
 
-      if (data.queryset.length > 0) {
+       if (data.queryset && data.queryset.length > 0) {
         setQueryset(data.queryset); // Replace with new data
         //setcurrent_page(2); // Prepare for next page
 
@@ -270,7 +270,8 @@ const handlePressDetailsPage = (item) =>
     navigation.navigate('Mteja Details', { ...item });
 
 
-
+ const handlePressRenewMteja = (item) =>
+    navigation.navigate('Renew Mteja', { ...item, postId: item.id });
 
 //-----------Fetch wateja wote
 //const [WatejaWote2, setWatejaWote2] = useState(0);
@@ -351,6 +352,28 @@ const TableRowComponent = ({ item}) => {
         />
       </TouchableOpacity>
 
+{userData && userData.is_admin === true && (
+        <TouchableOpacity
+        style={[
+          globalStyles.cell,
+          globalStyles.buttoncolumn,
+          { justifyContent: 'center', alignItems: 'center' },
+        ]}
+        onPress={() => handlePressRenewMteja(item)}
+      >
+        <MaterialCommunityIcons
+          name="gesture-tap-button"
+          size={30}
+          style={[globalStyles.TableIconColor,
+            {
+              color:'wheat',
+            }
+
+            ]}
+        />
+      </TouchableOpacity>
+      )}
+
 
     </View>
   )
@@ -400,6 +423,29 @@ const TableRowComponent = ({ item}) => {
           style={globalStyles.TableIconColor}
         />
       </TouchableOpacity>
+
+      {userData && userData.is_admin === true && (
+
+        <TouchableOpacity
+        style={[
+          globalStyles.cell,
+          globalStyles.buttoncolumn,
+          { justifyContent: 'center', alignItems: 'center' },
+        ]}
+        onPress={() => handlePressRenewMteja(item)}
+      >
+        <MaterialCommunityIcons
+          name="gesture-tap-button"
+          size={30}
+          style={[globalStyles.TableIconColor,
+            {
+              color:'wheat',
+            }
+
+            ]}
+        />
+      </TouchableOpacity>
+      )}
 
     </View>
   )
@@ -504,7 +550,10 @@ const TableRowComponent = ({ item}) => {
                   <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Lipwa</Text>
                   <Text style={[globalStyles.cell2, globalStyles.otherColumns]}>Deni</Text>
                   <Text style={[globalStyles.cell2, globalStyles.buttoncolumn]}>Hali</Text>
-      
+                 
+                 {userData && userData.is_admin === true && (
+                  <Text style={[globalStyles.cell2, globalStyles.buttoncolumn]}>Renew</Text>
+                 )}
                 </View>
 
                 {/* Render Table Rows */}

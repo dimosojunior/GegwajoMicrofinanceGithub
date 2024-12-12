@@ -383,7 +383,6 @@ const TableRowComponent = ({ item}) => {
  if (item.JinaLaKituo.toLowerCase().includes(input.toLowerCase())) {
 
 
-
   return (
     <View key={item.id} style={globalStyles.row2}>
       <Text style={[globalStyles.cell, globalStyles.firstNameColumn]}>{item.JinaLaKituo}</Text>

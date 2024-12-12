@@ -92,6 +92,16 @@ const [isPending, setPending] = useState(true);
   };
 
 
+  const openUrl = async (url) => {
+        const isSupported = await Linking.canOpenURL(url);
+        if (isSupported) {
+            await Linking.openURL(url);
+        } else {
+            Alert.alert(`Programu imeshindwa kufungua hii linki: ${url}`);
+        }
+    }
+//const [modalVisible, setModalVisible] = useState(false);
+const WebsiteLink = EndPoint + `/admin/`
   
 
 // kwaajili ya kupata taarifa za aliyelogin
@@ -1353,7 +1363,14 @@ style={[globalStyles.FullRipotiYaSikuRightText,
 
 {userData && userData.is_admin === true && (
 <TouchableOpacity 
-onPress={() => navigation.replace('Futa Ripoti', { ...item, postId: item.id })}
+// onPress={() => navigation.replace('Futa Ripoti', { ...item, postId: item.id })}
+
+ onPress={() => {
+    //setDropdownVisible2(false);
+    Linking.openURL(WebsiteLink);
+    //navigation.navigate("Faini Za Leo"); // Navigate to first option
+  }}
+
 style={{
   width:'50%',
 }}
@@ -1374,7 +1391,7 @@ style={{
    marginLeft:20,
    marginVertical:20,
   
-}}>Futa Ripoti</Text>
+}}>Badilisha</Text>
 
 )}
 </TouchableOpacity>

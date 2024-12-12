@@ -53,6 +53,10 @@ import DeleteKituo from '../Screens/DeleteKituo';
 import TaarifaZaVituo from '../Screens/TaarifaZaVituo';
 import DeleteTaarifaZaKituo from '../Screens/DeleteTaarifaZaKituo';
 
+import TumaUjumbe from '../Screens/TumaUjumbe';
+
+import RenewMteja from '../Wateja/RenewMteja';
+
 
 const Stack = createStackNavigator();
 
@@ -328,6 +332,26 @@ function MyStack( {navigation}){
       //       headerLeft: () => <Header  title='About Page' />,
       //     })}
       />
+
+
+              <Stack.Screen
+      name="Tuma Ujumbe"
+      component={TumaUjumbe}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
+               <Stack.Screen
+      name="Renew Mteja"
+      component={RenewMteja}
+      // options={ () => ({ 
+      //       headerLeft: () => <Header  title='About Page' />,
+      //     })}
+      />
+
+
 
 
 

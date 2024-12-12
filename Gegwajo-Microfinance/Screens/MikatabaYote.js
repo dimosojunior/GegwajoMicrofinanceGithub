@@ -311,6 +311,8 @@ const handlePressDetailsPage = (item) =>
 
 
 
+const TumaUjumbehandlePress = (item) =>
+    navigation.navigate('Tuma Ujumbe', { ...item });
 
 //-----------Fetch wateja wote
 
@@ -404,6 +406,24 @@ const TableRowComponent = ({ item}) => {
       </TouchableOpacity>
       )}
 
+
+ {userData && userData.is_cashier === true && (
+      <TouchableOpacity
+        style={[
+          globalStyles.cell,
+          globalStyles.buttoncolumn,
+          { justifyContent: 'center', alignItems: 'center' },
+        ]}
+        onPress={() => TumaUjumbehandlePress(item)}
+      >
+        <FontAwesome name="commenting-o" size={30} style={globalStyles.TableIconColorTumaujumbe} />
+      </TouchableOpacity>
+      )}
+
+
+
+
+
     </View>
   )
 
@@ -464,6 +484,21 @@ const TableRowComponent = ({ item}) => {
         onPress={() => DeletehandlePress(item)}
       >
         <FontAwesome name="trash-o" size={30} style={globalStyles.TableIconColorDelete} />
+      </TouchableOpacity>
+      )}
+
+
+
+ {userData && userData.is_cashier === true && (
+      <TouchableOpacity
+        style={[
+          globalStyles.cell,
+          globalStyles.buttoncolumn,
+          { justifyContent: 'center', alignItems: 'center' },
+        ]}
+        onPress={() => TumaUjumbehandlePress(item)}
+      >
+        <FontAwesome name="commenting-o" size={30} style={globalStyles.TableIconColorTumaujumbe} />
       </TouchableOpacity>
       )}
 
@@ -574,6 +609,14 @@ const TableRowComponent = ({ item}) => {
                     {userData && userData.is_admin === true && (
                   <Text style={[globalStyles.cell2, globalStyles.buttoncolumn]}>Futa</Text>
                   )}
+
+                      {userData && userData.is_cashier === true && (
+                  <Text style={[globalStyles.cell2, globalStyles.buttoncolumn]}>Ujumbe</Text>
+                  )}
+
+
+
+
                 </View>
 
                 {/* Render Table Rows */}

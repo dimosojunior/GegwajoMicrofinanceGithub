@@ -1220,6 +1220,55 @@ FullRipotiYaSikuRightText:{
 
 
 
+TableIconColorTumaujumbe:{
+  color:'wheat',
+
+},
+
+
+
+ProjectBodyinput:{
+  //width: Dimensions.get('window').width,
+  //flexDirection: "row",
+    width: '90%',
+    height: 200,
+    borderColor: "white",
+    borderWidth: 1,
+    //alignItems: "center",
+    padding: 10,
+    borderRadius: 10,
+    marginTop: 10,
+    //justifyContent:'flex-start',
+    marginHorizontal:20,
+
+
+
+},
+
+ProjectBodyInputIcon:{
+  marginLeft: 0,
+  borderWidth:1,
+  borderColor:'black',
+  //paddingVertical:100,
+  height:100,
+  paddingHorizontal:10,
+
+    color: 'black',
+    fontFamily:'Light',
+    width: Dimensions.get('window').width - 80,
+    //backgroundColor: 'red',
+    //height:180,
+    //paddingVertical:20,
+    //justifyContent:'center',
+    //alignItems:'center',
+    
+    borderRadius: 10,
+    // justifyContent:'flex-start',
+
+
+},
+
+
 
 
 
