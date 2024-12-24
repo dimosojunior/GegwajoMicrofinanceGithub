@@ -170,7 +170,7 @@ const getItems = (token) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.queryset.length > 0) {
+        if (data.queryset && data.queryset.length > 0) {
           setQueryset(data.queryset);
            setJumlaYaWote(data.JumlaYaWote); // Set the total amount
 

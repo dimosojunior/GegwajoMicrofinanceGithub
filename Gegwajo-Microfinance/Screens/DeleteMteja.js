@@ -266,7 +266,7 @@ keyboardShouldPersistTaps="handled"
 
      {SimuYaMteja && (
        <Text style={globalStyles.TaarifaBinafsiSimuYaMteja}>
-     Simu: {SimuYaMteja}    
+     Simu: 0{SimuYaMteja}    
       </Text>
       )}
 
@@ -275,7 +275,7 @@ keyboardShouldPersistTaps="handled"
 <View style={globalStyles.TaarifaBinafsimkopo}>
 {SimuYaMzaminiWa1 && (
  <Text style={globalStyles.TaarifaBinafsiSimuYaMtejaMkopoText}>
-     Win: {SimuYaMzaminiWa1}    
+     Win: 0{SimuYaMzaminiWa1}    
       </Text>
       )}
  
@@ -286,7 +286,7 @@ keyboardShouldPersistTaps="handled"
       
       {SimuYaMzaminiWa2 && (
        <Text style={globalStyles.TaarifaBinafsiSimuYaMtejaDeniText}>
-     {SimuYaMzaminiWa2}    
+     0{SimuYaMzaminiWa2}    
       </Text>
     )}
 

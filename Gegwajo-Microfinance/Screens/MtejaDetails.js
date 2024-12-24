@@ -69,6 +69,7 @@ const MtejaDetails = ({navigation, route}) => {
     Ni_Mteja_Hai,
     Created,
     reg_no,
+    JumlaYaFainiZote,
     Up_To
    
    } = route.params
@@ -317,11 +318,16 @@ style={globalStyles.FullTaarifaZaMarejeshoRightText}
  >{formatToThreeDigits(item.RejeshoLililoPokelewaLeo)}</Text>
  ):(
 
+
  <View style={{
   flexDirection:'row',
   alignItems:'center',
 
  }}>
+
+{JumlaYaFainiZote > 0 ? (
+
+
     <FontAwesome name='user-times' 
         
       size={30}
@@ -333,6 +339,21 @@ style={globalStyles.FullTaarifaZaMarejeshoRightText}
 
         ]}      
        />
+):(
+ <FontAwesome name='check-square-o' 
+        
+      size={30}
+      //color="black" 
+      style={[globalStyles.ItemHomeScreenLeftContainerIcon,
+        {
+          marginRight:10,
+        }
+
+        ]}      
+       />
+
+)}
+
 <Text 
 style={[globalStyles.FullTaarifaZaMarejeshoRightText,
   {
@@ -444,7 +465,7 @@ onScroll={handleScroll} scrollEventThrottle={16}
 
      {SimuYaMteja && (
        <Text style={globalStyles.TaarifaBinafsiSimuYaMteja}>
-     Simu: {SimuYaMteja}    
+     Simu: 0{SimuYaMteja}    
       </Text>
       )}
 
@@ -453,7 +474,7 @@ onScroll={handleScroll} scrollEventThrottle={16}
 <View style={globalStyles.TaarifaBinafsimkopo}>
 {SimuYaMzaminiWa1 && (
  <Text style={globalStyles.TaarifaBinafsiSimuYaMtejaMkopoText}>
-     Win: {SimuYaMzaminiWa1}    
+     Win: 0{SimuYaMzaminiWa1}    
       </Text>
       )}
  
@@ -464,7 +485,7 @@ onScroll={handleScroll} scrollEventThrottle={16}
       
       {SimuYaMzaminiWa2 && (
        <Text style={globalStyles.TaarifaBinafsiSimuYaMtejaDeniText}>
-     {SimuYaMzaminiWa2}    
+     0{SimuYaMzaminiWa2}    
       </Text>
     )}
 

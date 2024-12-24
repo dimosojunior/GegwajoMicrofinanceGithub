@@ -197,6 +197,29 @@ const [JinaLaMzaminiWa2, setJinaLaMzaminiWa2] = useState('');
 
 
 
+  // State variable to store the RoomClasses data
+  const [Aina, setAina] = useState([]);
+ const [selectedAina, setSelectedAina] = useState(null);
+ 
+  // Fetch Universities
+  useEffect(() => {
+    fetch(`${EndPoint}/Add/AllAinaZaMarejesho/`)
+      .then((response) => response.json())
+      .then((data) => {
+        setAina(data);
+        //console.log("Well");
+        
+        // Set the default selectedRoomClass if needed
+        //setSelectedRoomClass(data[0]); // For example, set the first RoomClass as default
+      })
+      .catch((error) => {
+        //console.error('Error fetching Product categories:', error);
+        //showAlertFunction("Error fetching Universities");
+      });
+  }, []);
+
+
+
 
 
 const handleRegistration = async () => {
@@ -220,6 +243,15 @@ const handleRegistration = async () => {
           formData.append('JinaLaKituo', selectedJinaLaKituo);
         } else {
           showAlertFunction('Tafadhali chagua jina la kituo anachoombea mkopo.');
+          setIsLoading(false);
+          return;
+        }
+
+
+         if (selectedAina) {
+          formData.append('Aina', selectedAina);
+        } else {
+          showAlertFunction('Tafadhali chagua aina ya mpokeaji wa mkopo.');
           setIsLoading(false);
           return;
         }
@@ -1061,6 +1093,68 @@ const handleRegistration = async () => {
             <Picker.Item 
             key={x.id} 
             label={x.JinaLaKituo} 
+            value={x.id} 
+            />
+        ))}
+    </Picker>
+
+         </View>
+          
+        </View>    
+          
+        
+    </View>
+
+  {/*  mwisho wa picker*/}
+
+
+
+
+
+
+  {/*  mwanzo wa picker*/}
+ <View style={{ marginTop: 0 ,
+  marginBottom:30,
+ }}>
+        
+
+        < View style={[globalStyles.inputTax,
+          {
+            backgroundColor:'black',
+            marginHorizontal:0,
+            width:'100%',
+          }
+
+          ]}>
+            <Text style={globalStyles.TaxTypeAddNewProject}>
+                 Mpokeaji
+            </Text>
+
+     <View style={globalStyles.picker}>
+
+            
+       {/*   <Picker
+           style={globalStyles.pickerInputAddNewProject}
+            selectedValue={selectedMkoa}
+            onValueChange={(itemValue) => setSelectedMkoa(itemValue)}
+          >
+
+            {Mkoa.map((x) => (
+              <Picker.Item
+                key={x.id}
+                label={selectedMkoa ? selectedMkoa : x.JinaLaMkoa}
+                value={x}
+              />
+            ))}
+          </Picker>*/}
+          <Picker
+    selectedValue={selectedAina}
+    onValueChange={(itemValue) => setSelectedAina(itemValue)}
+    >
+        {Aina.map((x) => (
+            <Picker.Item 
+            key={x.id} 
+            label={x.Aina} 
             value={x.id} 
             />
         ))}
